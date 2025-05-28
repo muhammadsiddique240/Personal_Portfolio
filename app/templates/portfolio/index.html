@@ -1,0 +1,117 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyPortfolio</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <navbar>
+    <section_1>
+      <h3><a href="#"><b>
+            < SIDD<span>&</span>Code />
+          </b></a></h3>
+    </section_1>
+    <section_2>
+      <ul>
+        <li><a href="#" class = "nav_btn">Home</a></li>
+        <li><a href="#" class = "nav_btn">About</a></li>
+        <li><a href="#" class = "nav_btn">Skills</a></li>
+        <li><a href="#" class = "nav_btn">Projects</a></li>
+        <li><a href="#" class = "nav_btn">Contact</a></li>
+      </ul>
+  </navbar>
+
+  <div class="container">
+
+
+    <div class="left_container" id = "home">
+      <div class="content">
+        <h1>Welcome to My Portfolio</h1>
+        <h4>
+          <p>Hello, I'm <span>SIDDIQUE</span>, a passionate
+            web developer and designer dedicated to creating
+            innovative and user-friendly digital experiences.</p>
+        </h4>
+        <pre>I am a Professional <span class="element"></span> </pre>
+      </div>
+    </div>
+    <div class="right_container">
+      <img src="{% static 'imgs/1.img.png'%}" alt="Portfolio Image" class="portfolio_image">
+    </div>
+    <hr>
+  </div>
+
+
+  
+  <div class="section_1" id="about">
+    <div class="left_section">
+      <img src="{% static 'imgs/2.jpg' %}" alt="About Me Image" class="portfolio_image">
+    </div>
+    <div class="right_section">
+      <span style="color: black; font-weight: bolder; font-size: xx-large; "><h3>About Me <hr></h3></span>
+      <div class="about_me_text">
+        <h4 style="color:white; font-weight: bolder; font-size: x-large;">Python Django Developer</h4>
+        <p>
+          Hi! I'm a passionate Python Django Developer with hands-on experience building robust, scalable web
+          applications and RESTful APIs. I specialize in developing backend systems using Django and Django REST
+          Framework (DRF), creating efficient, secure, and maintainable solutions for real-world problems.
+        </p>
+        <p>
+          With a strong foundation in Python, Django, DRF, and relational databases (like PostgreSQL and MySQL), I enjoy
+          designing modular applications, writing clean and well-documented code, and implementing REST APIs that power
+          dynamic frontends or mobile apps. I’m also familiar with frontend technologies like HTML, CSS, and JavaScript,
+          which helps me collaborate effectively with UI/UX teams.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section_2" id="skills">
+    <div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var typed = new Typed('.element', {
+        strings: ["Python Django Developer.", "Frontend Developer.", "Designer."],
+        typeSpeed: 50,
+        backSpeed: 25,
+        loop: true
+      });
+    });
+  </script>
+
+
+  <!--JavaScript file link-->
+  <script src = "{% static 'js/script.js' %}"><script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- -------------typed.js------------- -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</body>
+
+</html>
