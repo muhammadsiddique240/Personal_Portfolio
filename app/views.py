@@ -5,8 +5,10 @@ from .serializers import ProjectSerializer , ContactSerializer
 
 
 
+
 def home(request):
-    return render(request , "portfolio/index.html")
+    projects = Project.objects.all().order_by('-created_at')
+    return render(request, "portfolio/index.html", {'projects': projects})
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
