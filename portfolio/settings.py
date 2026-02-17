@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&r^9@k*_!5c-)4l+5m8kp$r%dhfm*g_@(*q))k#o_so*lm(qxa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # Change this to your specific domain in production
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Add this
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,10 +123,34 @@ import os
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'app', 'static'),  # Use your app name here
+    os.path.join(BASE_DIR, 'app', 'static'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Storage for static files (WhiteNoise)
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email Configuration
+CONTACT_EMAIL = 'muhammedsiddique240@gmail.com'
+DEFAULT_FROM_EMAIL = 'siddiqueboss420@gmail.com'
+
+# For live production email sending
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'siddiqueboss420@gmail.com'
+EMAIL_HOST_PASSWORD = 'vqha ngbu pymx jlgv'

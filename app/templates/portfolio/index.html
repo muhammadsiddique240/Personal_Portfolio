@@ -5,14 +5,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Siddique | Co-founder & Full Stack Developer</title>
+  <title>Muhammad Siddique | CTO & Systems Architect</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -23,374 +21,308 @@
 
 <body>
 
+  <!-- Django Messages -->
+  {% if messages %}
+  <div class="messages-container" style="position: fixed; top: 90px; right: 20px; z-index: 3000;">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}"
+      style="background: {% if message.tags == 'success' %}#22c55e{% else %}#ef4444{% endif %}; color: white; padding: 15px 25px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-weight: 500; animation: slideIn 0.3s ease-out;">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  <script>
+    setTimeout(() => {
+      document.querySelector('.messages-container').style.display = 'none';
+    }, 5000);
+  </script>
+  {% endif %}
+
   <!-- Navigation -->
   <nav>
-    <div class="logo">
-      <a href="#">MS<span style="color:var(--tech-blue)">.Dev</span></a>
+    <div class="container nav-container">
+      <div class="logo">
+        <a href="#" style="color:white; text-decoration:none;">MS<span>.</span></a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#projects">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://dualsyncagency.com" target="_blank" class="btn btn-primary"
+            style="padding: 8px 20px; font-size: 0.85rem;">Visit Agency</a></li>
+      </ul>
     </div>
-    <div class="menu-toggle" id="mobile-menu">
-      <i class="fas fa-bars"></i>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="https://dualsyncagency.com" target="_blank" class="btn btn-primary"
-          style="padding: 8px 20px;">Agency</a></li>
-    </ul>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h3>Hello, I'm</h3>
-      <h1>Muhammad Siddique<br><span>Co-founder & Full Stack Dev</span></h1>
-      <p>Building scalable backend systems and high-performance web applications. Co-founder of DualSync Agency, helping
-        businesses transform with digital solutions.</p>
+  <section class="container hero" id="home">
+    <div class="hero-text">
+      <span class="badge">Chief Technology Officer</span>
+      <h1>Architecting Scalable <span>Digital Solutions.</span></h1>
+      <p>I'm Muhammad Siddique, a Systems Architect specializing in Django backend engineering and scalable
+        infrastructures. I help businesses transform through precision-engineered technology.</p>
 
-      <div class="cta-group">
-        <a href="#projects" class="btn btn-primary">View Work</a>
-        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      <div class="btn-group" style="display:flex; gap:1rem;">
+        <a href="#projects" class="btn btn-primary">View Portfolio <i class="fas fa-chevron-right"
+            style="font-size:0.8rem;"></i></a>
+        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+      </div>
+    </div>
+
+    <div class="hero-img">
+      <div class="img-box">
+        <img src="{% static 'imgs/1.img.png' %}" alt="Muhammad Siddique Portrait">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about" style="background: #050a1b;">
+    <div class="container about-grid">
+      <div class="about-img">
+        <div class="img-box">
+          <img src="{% static 'imgs/portrait_about.jpg' %}" alt="Muhammad Siddique Portrait">
+        </div>
       </div>
 
-      <div class="social-links" style="justify-content: flex-start; margin-top: 2rem;">
+      <div class="about-content">
+        <span class="project-tag">About Me</span>
+        <h3>Strategic Engineering for Modern Businesses</h3>
+        <p>As the Co-Founder & CTO of DualSync Agency, I lead technical strategies and engineer enterprise-level backend
+          systems. My approach combines robust architecture with high-performance database management to deliver
+          scalable solutions.</p>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h4>20+</h4>
+            <p>Enterprise Applications Delivered</p>
+          </div>
+          <div class="stat-item">
+            <h4>5+</h4>
+            <p>Years Backend Mastery</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <a href="#contact" class="btn btn-primary">Start collaboration</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Expertise -->
+  <section class="section" id="expertise">
+    <div class="container">
+      <h2 class="section-title">Technical Expertise</h2>
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <i class="fab fa-python" style="color:#3776ab;"></i>
+          <h4>Python</h4>
+        </div>
+        <div class="expertise-card">
+          <i class="fas fa-server" style="color:#092e20;"></i>
+          <h4>Django</h4>
+        </div>
+        <div class="expertise-card">
+          <i class="fab fa-react" style="color:#61dafb;"></i>
+          <h4>React</h4>
+        </div>
+        <div class="expertise-card">
+          <i class="fab fa-js" style="color:#f7df1e;"></i>
+          <h4>JavaScript</h4>
+        </div>
+        <div class="expertise-card">
+          <i class="fab fa-docker" style="color:#2496ed;"></i>
+          <h4>Docker</h4>
+        </div>
+        <div class="expertise-card">
+          <i class="fas fa-infinity" style="color:#f7a50a;"></i>
+          <h4>DevOps</h4>
+        </div>
+        <!-- Add more as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section" id="projects" style="background: #050a1b;">
+    <div class="container">
+      <h2 class="section-title">Core Portfolio</h2>
+
+      <div class="projects-grid">
+
+        <!-- Flagship 1: CAD -->
+        <div class="project-card featured">
+          <div class="project-img-container">
+            <div class="project-slider" data-delay="5000">
+              <img src="{% static 'imgs/cad_catalog.png' %}" alt="CAD Catalog" class="active">
+              <img src="{% static 'imgs/cad_dashboard.png' %}" alt="CAD Dashboard">
+            </div>
+          </div>
+          <div class="project-content">
+            <span class="project-tag">E-Commerce Architecture</span>
+            <h3>Custom Apparel Design (CAD)</h3>
+            <p>A full-lifecycle e-commerce solution featuring complex drag-and-drop design tools, automated fulfillment
+              workflows, and Stripe payment integration.</p>
+            <div class="project-links">
+              <a href="https://www.fiverr.com/users/msiddique007/portfolio/Njk5MzJmZDhiOGQ2YjAwMDAxMTFhZDY5"
+                target="_blank"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flagship 2: ERP -->
+        <div class="project-card featured">
+          <div class="project-img-container">
+            <div class="project-slider" data-delay="5000">
+              <img src="{% static 'imgs/school_student.png' %}" alt="Student Portal" class="active">
+              <img src="{% static 'imgs/school_principal.png' %}" alt="Principal Dashboard">
+            </div>
+          </div>
+          <div class="project-content">
+            <span class="project-tag">Enterprise ERP</span>
+            <h3>School Management System</h3>
+            <p>A mission-critical ERP system for educational institutions with robust role-based access control, complex
+              scheduling, and financial modules.</p>
+            <div class="project-links">
+              <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flagship 3: Filler -->
+        <div class="project-card featured">
+          <div class="project-img-container">
+            <img src="{% static 'imgs/booking_mockup.png' %}" alt="Booking Platform" class="active"
+              style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <span class="project-tag">SaaS Infrastructure</span>
+            <h3>Filler - Provider Booking</h3>
+            <p>A scalable SaaS platform connecting service providers with clients. Built with Django REST Framework, JWT
+              authentication, and AWS S3 integration.</p>
+            <div class="project-links">
+              <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic DB Projects -->
+        {% for project in projects %}
+        <div class="project-card">
+          <div class="project-img-container" style="aspect-ratio: 16/9;">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}"
+              style="width:100%; height:100%; object-fit:cover;">
+            {% else %}
+            <div
+              style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#0f172a;">
+              <i class="fas fa-code" style="font-size: 2rem; color: #334155;"></i>
+            </div>
+            {% endif %}
+          </div>
+          <div class="project-content">
+            <span class="project-tag">Web Development</span>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description|truncatechars:100 }}</p>
+            <div class="project-links">
+              {% if project.github_link %}<a href="{{ project.github_link }}" target="_blank"><i
+                  class="fab fa-github"></i></a>{% endif %}
+              {% if project.live_link %}<a href="{{ project.live_link }}" target="_blank"><i
+                  class="fas fa-external-link-alt"></i></a>{% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <h3 style="text-align: center; margin-top: 5rem; color: var(--text-secondary); font-size: 1.25rem;">GitHub
+        Engineering Logs</h3>
+      <div id="github-grid" class="projects-grid" style="margin-top: 2rem;"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Work With Me</h2>
+      <div class="contact-container">
+        <form action="." method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label style="display:block; margin-bottom:0.5rem; font-size:0.875rem;">Full Name</label>
+            <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label style="display:block; margin-bottom:0.5rem; font-size:0.875rem;">Email Address</label>
+            <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label style="display:block; margin-bottom:0.5rem; font-size:0.875rem;">Your Message</label>
+            <textarea name="message" class="form-control" rows="5" placeholder="Tell me about your project..."
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Project
+            Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
         <a href="https://www.linkedin.com/in/muhammad-siddique-88aa98284/" target="_blank"><i
             class="fab fa-linkedin"></i></a>
         <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i></a>
         <a href="mailto:contact@dualsyncagency.com"><i class="fas fa-envelope"></i></a>
       </div>
+      <p style="color:var(--text-secondary);">Designed & Engineered by Muhammad Siddique. Co-founder @ DualSync Agency.
+      </p>
     </div>
-
-    <div class="hero-image">
-      <div class="img-container">
-        <img src="{% static 'imgs/1.img.png' %}" alt="Muhammad Siddique">
-      </div>
-
-      <div class="badge">
-        <i class="fab fa-python" style="font-size: 2rem; color: #3776ab;"></i>
-        <div>
-          <h4>Python & Django</h4>
-          <small>Expert</small>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About / Experience -->
-  <section class="section" id="about">
-    <h2 class="section-title">About Me</h2>
-
-    <div class="about-container">
-      <div class="about-img">
-        <img src="{% static 'imgs/2.jpg' %}" alt="Work Setup">
-      </div>
-
-      <div class="about-text">
-        <h3>From Junior Dev to Agency Founder</h3>
-        <p style="color: #ccc; margin-bottom: 20px;">
-          I am a passionate <strong>Python Backend & Web Developer</strong> with a journey from writing my first script
-          to co-founding <strong>DualSync Agency</strong>. With a strong foundation in <strong>Django, DRF, and
-            PostgreSQL</strong>, I specialize in building robust, role-based systems and scalable APIs.
-        </p>
-
-        <div class="experience-card">
-          <span class="role-badge">Current Role</span>
-          <h4>Co-founder & Full Stack Developer</h4>
-          <h5 style="color: var(--tech-blue); margin-bottom: 10px;">DualSync Agency (dualsyncagency.com)</h5>
-          <p style="font-size: 0.9rem; margin-bottom: 15px;">Leading technical strategy, overseeing client projects, and
-            developing custom web solutions for businesses.</p>
-
-          <ul style="list-style: disc; padding-left: 20px; font-size: 0.9rem; color: #ccc;">
-            <li>Architecting scalable backend systems using Python/Django.</li>
-            <li>Managing full deployment lifecycles.</li>
-            <li>Delivering high-end web experiences for clients.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech Stack -->
-  <section class="section" style="background: rgba(255,255,255,0.02);">
-    <h2 class="section-title">Technical Expertise</h2>
-    <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); text-align: center;">
-      <div class="project-card" style="padding: 20px;">
-        <i class="fab fa-python" style="font-size: 3rem; color: #3776ab; margin-bottom: 10px;"></i>
-        <h4>Python</h4>
-      </div>
-      <div class="project-card" style="padding: 20px;">
-        <i class="fas fa-server" style="font-size: 3rem; color: #092e20; margin-bottom: 10px;"></i>
-        <h4>Django & DRF</h4>
-      </div>
-      <div class="project-card" style="padding: 20px;">
-        <i class="fas fa-database" style="font-size: 3rem; color: #336791; margin-bottom: 10px;"></i>
-        <h4>PostgreSQL</h4>
-      </div>
-      <div class="project-card" style="padding: 20px;">
-        <i class="fab fa-js" style="font-size: 3rem; color: #f7df1e; margin-bottom: 10px;"></i>
-        <h4>JavaScript</h4>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="section" id="projects">
-    <h2 class="section-title">Featured Work</h2>
-
-    <div class="projects-grid">
-
-      <!-- Flagship Project 1: Custom Apparel Design -->
-      <div class="project-card flagship">
-        <div class="project-img">
-          <img src="{% static 'imgs/apparel_mockup.png' %}" alt="Custom Apparel Design">
-        </div>
-        <div class="project-info">
-          <span class="role-badge" style="background: rgba(157, 78, 221, 0.2); color: var(--accent-light);">E-Commerce
-            Solution</span>
-          <h3>Custom Apparel Design (CAD)</h3>
-          <p>An interactive web application allowing users to design and purchase personalized apparel. Features a
-            drag-and-drop design tool, positioning/scaling, and choice of printing methods (Screen Printing vs
-            Embroidery).</p>
-          <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;"><strong>Key Features:</strong> Stripe Payment
-            Integration, "Buy Now" workflows, Admin fulfillment dashboard, and automated order notifications.</p>
-
-          <div class="tech-stack">
-            <span class="tech-tag">Python/Django</span>
-            <span class="tech-tag">Stripe API</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Canvas API</span>
-          </div>
-
-          <div class="project-links">
-            <a href="https://www.fiverr.com/users/msiddique007/portfolio/Njk5MzJmZDhiOGQ2YjAwMDAxMTFhZDY5"
-              target="_blank"><i class="fas fa-external-link-alt"></i> Live Portfolio</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Flagship Project 2: School Management System -->
-      <div class="project-card flagship">
-        <div class="project-img">
-          <img src="{% static 'imgs/school_mockup.png' %}" alt="School Management System">
-        </div>
-        <div class="project-info">
-          <span class="role-badge" style="background: rgba(0, 180, 216, 0.2); color: var(--tech-blue);">Flagship
-            Project</span>
-          <h3>School Management System (ERP)</h3>
-          <p>A comprehensive role-based ERP system for educational institutions with strict permission levels for Admin,
-            Staff, Teachers, and Students. Features include Class/Subject management, Fee processing, and Exam
-            scheduling.</p>
-
-          <div class="tech-stack">
-            <span class="tech-tag">Django</span>
-            <span class="tech-tag">Bootstrap 5</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">Role-Based Auth</span>
-          </div>
-
-          <div class="project-links">
-            <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i> View Code</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Flagship Project 3: Filler - Booking Platform -->
-      <div class="project-card flagship">
-        <div class="project-img">
-          <img src="{% static 'imgs/booking_mockup.png' %}" alt="Filler Booking Platform">
-        </div>
-        <div class="project-info">
-          <span class="role-badge" style="background: rgba(255, 117, 4, 0.2); color: #ff7504;">SaaS Platform</span>
-          <h3>Filler - Service Provider Booking</h3>
-          <p>A multi-role booking platform connecting service providers (barbers, spas) with customers. Enables
-            providers to manage profiles, hours, and deals while customers book appointments seamlessly.</p>
-          <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;"><strong>Architecture:</strong> Django REST
-            Framework with JWT Auth, PostgreSQL, and S3 storage. Includes OTP verification and comprehensive provider
-            onboarding flow.</p>
-
-          <div class="tech-stack">
-            <span class="tech-tag">Django REST Framework</span>
-            <span class="tech-tag">JWT Auth</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">AWS S3</span>
-          </div>
-
-          <div class="project-links">
-            <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i> View Code</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dynamic Projects from DB (Skipping manually added ones) -->
-      {% for project in projects %}
-      {% if not project.title == "School Management System" and not project.title == "Custom Apparel Design" and not
-      project.title == "Filler" %}
-      <div class="project-card">
-        <div class="project-img">
-          {% if project.image %}
-          <img src="{{ project.image.url }}" alt="{{ project.title }}">
-          {% else %}
-          <div
-            style="width:100%; height:100%; background: #222; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-code" style="font-size: 3rem; color: #444;"></i>
-          </div>
-          {% endif %}
-        </div>
-        <div class="project-info">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description|truncatechars:100 }}</p>
-          <div class="tech-stack">
-            {% if project.tech_stack %}
-            {% for tech in project.tech_stack.split %}
-            <span class="tech-tag">{{ tech }}</span>
-            {% endfor %}
-            {% endif %}
-          </div>
-          <div class="project-links">
-            {% if project.github_link %}
-            <a href="{{ project.github_link }}" target="_blank"><i class="fab fa-github"></i></a>
-            {% endif %}
-            {% if project.live_link %}
-            <a href="{{ project.live_link }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      {% endif %}
-      {% endfor %}
-    </div>
-
-    <!-- GitHub Section -->
-    <h3 style="margin-top: 4rem; text-align: center;">More Projects from GitHub</h3>
-    <div id="github-projects-grid" class="projects-grid" style="margin-top: 2rem;">
-      <!-- Populated by JS -->
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="contact-form">
-      <p style="text-align: center; margin-bottom: 2rem; color: #ccc;">Have a project in mind or want to discuss
-        collaboration? I'd love to hear from you.</p>
-
-      <form action="#" method="POST" id="contactForm">
-        {% csrf_token %}
-        <div class="form-group">
-          <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-        </div>
-        <div class="form-group">
-          <input type="email" name="email" class="form-control" placeholder="Your Email" required>
-        </div>
-        <div class="form-group">
-          <textarea name="message" rows="5" class="form-control" placeholder="Your Message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="social-links">
-      <a href="https://linkedin.com/in/muhammad-siddique-88aa98284/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://dualsyncagency.com" target="_blank"><i class="fas fa-globe"></i></a>
-    </div>
-    <p>&copy; 2024 Muhammad Siddique. All Rights Reserved. Co-founder @ DualSync Agency.</p>
   </footer>
 
   <script>
-    // Mobile Menu Toggle
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
-    });
-
-
-    // Scroll Spy for Active Link
-    const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll(".nav-links li a");
-
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 150) {
-          current = section.getAttribute("id");
-        }
-      });
-
-      navItems.forEach((li) => {
-        li.classList.remove("active");
-        if (li.getAttribute("href").includes(current)) {
-          li.style.color = "var(--tech-blue)";
-        } else {
-          li.style.color = "#fff";
-        }
-      });
-    });
-
-    // GitHub API Fetch
-    async function fetchGitHubProjects() {
-      const username = 'm-siddique-786';
-      const container = document.getElementById('github-projects-grid');
-
-      // Show loading
-      container.innerHTML = '<p class="loading-spinner">Loading projects from GitHub...</p>';
-
+    // GitHub API
+    async function fetchGithub() {
+      const grid = document.getElementById('github-grid');
       try {
-        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=12`); // Fetches 12 latest
-        if (!response.ok) throw new Error('GitHub API failed');
-        const repos = await response.json();
-
-        container.innerHTML = ''; // Clear loading
-
-        let count = 0;
-        repos.forEach(repo => {
-          // Filter duplicates if they match flagship names loosely
-          // Also filter empty or forks if desired. Keeping forks=false
-          if (!repo.fork && repo.name !== "Personal_portfolio" &&
-            !repo.name.toLowerCase().includes("school") &&
-            !repo.name.toLowerCase().includes("apparel") &&
-            !repo.name.toLowerCase().includes("filler") && count < 8) {
-
-            count++;
-            const card = document.createElement('div');
-            card.className = 'project-card';
-            card.innerHTML = `
-                            <div class="project-info">
-                                <h3>${repo.name}</h3>
-                                <p style="font-size: 0.9rem; color: #aaa;">${repo.description ? repo.description.substring(0, 100) + '...' : 'No description available.'}</p>
-                                <div class="tech-stack">
-                                    <span class="tech-tag">${repo.language || 'Code'}</span>
-                                    <span class="tech-tag"><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
-                                </div>
-                                <div class="project-links">
-                                    <a href="${repo.html_url}" target="_blank" style="font-size: 0.9rem;"><i class="fab fa-github"></i> View Code</a>
-                                </div>
-                            </div>
-                        `;
-            container.appendChild(card);
-          }
-        });
-
-        if (container.children.length === 0) {
-          container.innerHTML = '<p style="text-align:center;">No recent public projects found directly on GitHub.</p>';
-        }
-
-      } catch (error) {
-        console.error("Error fetching GitHub repos:", error);
-        container.innerHTML = '<p style="text-align:center;">Could not load projects from GitHub automatically. Please check <a href="https://github.com/m-siddique-786" style="color:var(--tech-blue)">my profile</a>.</p>';
-      }
+        const res = await fetch('https://api.github.com/users/m-siddique-786/repos?sort=created&per_page=6');
+        const repos = await res.json();
+        grid.innerHTML = repos.filter(r => !r.fork).map(repo => `
+                    <div class="project-card" style="padding:1.5rem;">
+                        <span class="project-tag">${repo.language || 'Code'}</span>
+                        <h3 style="font-size:1.1rem; margin-bottom:0.5rem;">${repo.name}</h3>
+                        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1rem;">${repo.description || 'View repository on GitHub.'}</p>
+                        <div class="project-links">
+                            <a href="${repo.html_url}" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                `).join('');
+      } catch (e) { console.error(e); }
     }
 
-    document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
+    // Slider Logic
+    function initSliders() {
+      document.querySelectorAll('.project-slider').forEach(slider => {
+        const imgs = slider.querySelectorAll('img');
+        if (imgs.length <= 1) return;
+        let active = 0;
+        setInterval(() => {
+          imgs[active].classList.remove('active');
+          active = (active + 1) % imgs.length;
+          imgs[active].classList.add('active');
+        }, 5000);
+      });
+    }
 
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchGithub();
+      initSliders();
+    });
   </script>
 </body>
 
