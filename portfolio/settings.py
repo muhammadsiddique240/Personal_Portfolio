@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*'] # Wildcard for easy deployment. For prod, use: ['siddique.pythonanywhere.com']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://personalportfolio-production-e78b.up.railway.app',
+]
+
 
 # Application definition
 
