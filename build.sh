@@ -2,11 +2,14 @@
 # exit on error
 set -o errexit
 
-# Check for virtual environment and activate if present (Railway standard)
-if [ -d "/app/.venv" ]; then
-    source /app/.venv/bin/activate
+# Ensure virtual environment exists
+if [ ! -d "/app/.venv" ]; then
+    python -m venv /app/.venv
 fi
 
-pip install -r requirements.txt
-python manage.py collectstatic --no-input
-python manage.py migrate
+# Install dependencies using the venv's pip
+/app/.venv/bin/pip install -r requirements.txt
+
+# Run management commands using the venv's python
+/app/.venv/bin/python manage.py collectstatic --no-input
+/app/.venv/bin/python manage.py migrate
