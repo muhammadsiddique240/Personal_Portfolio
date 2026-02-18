@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&r^9@k*_!5c-)4l+5m8kp$r%dhfm*g_@(*q))k#o_so*lm(qxa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] # Change this to your specific domain in production
+ALLOWED_HOSTS = ['*'] # Wildcard for easy deployment. For prod, use: ['siddique.pythonanywhere.com']
 
 
 # Application definition
