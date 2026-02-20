@@ -36,7 +36,13 @@ def home(request):
             print(f"Error sending email: {e}")
             messages.error(request, "There was an error sending your message. Please try again later.")
 
-    flagship_titles = ["School Management System", "Custom Apparel Design", "Filler"]
+    flagship_titles = [
+        "Duality Hotel", 
+        "School ERP", 
+        "CAD - Custom Apparel Design", 
+        "BookAirFlight", 
+        "Filler - Provider Booking"
+    ]
     projects = Project.objects.exclude(title__in=flagship_titles).order_by('-created_at')
     return render(request, "portfolio/index.html", {'projects': projects})
 
