@@ -1,329 +1,443 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Siddique | CTO & Systems Architect</title>
+  <title>Muhammad Siddique | Architecting Scalable Backend Solutions</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#6366f1',
+          }
+        }
+      }
+    }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <style>
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, minmax(200px, auto));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
-<body>
-
-  <!-- Django Messages -->
-  {% if messages %}
-  <div class="messages-container" style="position: fixed; top: 90px; right: 20px; z-index: 3000;">
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}"
-      style="background: {% if message.tags == 'success' %}#22c55e{% else %}#ef4444{% endif %}; color: white; padding: 15px 25px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-weight: 500; animation: slideIn 0.3s ease-out;">
-      {{ message }}
-    </div>
-    {% endfor %}
-  </div>
-  <script>
-    setTimeout(() => {
-      document.querySelector('.messages-container').style.display = 'none';
-    }, 5000);
-  </script>
-  {% endif %}
+<body class="bg-[#030712] text-slate-200 antialiased selection:bg-brand/30">
 
   <!-- Navigation -->
-  <nav>
-    <div class="container nav-container">
-      <div class="logo">
-        <a href="#" style="color:white; text-decoration:none;">MS<span>.</span></a>
+  <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#home" class="logo-container group">
+        <span class="logo-text group-hover:tracking-normal transition-all duration-500">MS</span>
+        <span class="logo-dot">.</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="#home" class="hover:text-white transition-colors">Home</a>
+        <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+        <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+        <a href="#tech" class="hover:text-white transition-colors">Tech</a>
+        <a href="https://www.linkedin.com/in/muhammad-siddique-88aa98284/" target="_blank"
+          class="px-5 py-2.5 bg-brand text-white rounded-full hover:bg-brand/90 transition-all shadow-lg shadow-brand/20">
+          Contact Me
+        </a>
       </div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#expertise">Expertise</a></li>
-        <li><a href="#projects">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://dualsyncagency.com" target="_blank" class="btn btn-primary"
-            style="padding: 8px 20px; font-size: 0.85rem;">Visit Agency</a></li>
-      </ul>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="container hero" id="home">
-    <div class="hero-text">
-      <span class="badge">Chief Technology Officer</span>
-      <h1>Architecting Scalable <span>Digital Solutions.</span></h1>
-      <p>I'm Muhammad Siddique, a Systems Architect specializing in Django backend engineering and scalable
-        infrastructures. I help businesses transform through precision-engineered technology.</p>
+  <section id="home" class="relative pt-40 pb-20 px-6 overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-brand/5 blur-[120px] rounded-full"></div>
 
-      <div class="btn-group" style="display:flex; gap:1rem;">
-        <a href="#projects" class="btn btn-primary">View Portfolio <i class="fas fa-chevron-right"
-            style="font-size:0.8rem;"></i></a>
-        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+    <div class="max-w-7xl mx-auto text-center relative z-10">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8 animate-fade floating">
+        <span class="flex h-2 w-2 rounded-full bg-brand animate-pulse"></span>
+        <span class="text-xs font-semibold text-brand tracking-wider uppercase">Co-founder @ DualSync Agency</span>
       </div>
-    </div>
 
-    <div class="hero-img">
-      <div class="img-box">
-        <img src="{% static 'imgs/1.img.png' %}" alt="Muhammad Siddique Portrait">
+      <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-[1.1] tracking-tight animate-fade">
+        Architecting Scalable <br>
+        <span class="text-primary-gradient">Backend Solutions.</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-lg text-slate-400 mb-10 animate-fade" style="animation-delay: 0.2s;">
+        Python Django DRF Expert with years of experience building mission-critical systems and leading technical
+        strategies at DualSync Agency.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 animate-fade" style="animation-delay: 0.4s;">
+        <a href="#projects"
+          class="px-8 py-4 bg-white text-[#030712] font-bold rounded-xl hover:bg-slate-200 transition-all">
+          Explore Work
+        </a>
+        <a href="#about" class="px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/5 transition-all">
+          About Me
+        </a>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section class="section" id="about" style="background: #050a1b;">
-    <div class="container about-grid">
-      <div class="about-img">
-        <div class="img-box">
-          <img src="{% static 'imgs/portrait_about.jpg' %}" alt="Muhammad Siddique Portrait">
+  <section id="about" class="py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      <div class="md:w-1/2 relative group">
+        <div
+          class="absolute -inset-4 bg-brand/20 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity">
+        </div>
+        <div class="relative rounded-[3rem] overflow-hidden border border-white/10 aspect-square">
+          <img src="{% static 'imgs/1.img.png' %}" alt="Muhammad Siddique" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute -bottom-6 -right-6 glass p-6 rounded-3xl animate-bounce shadow-2xl">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand/20 flex items-center justify-center">
+              <i class="fas fa-rocket text-brand text-xl"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Experience</p>
+              <p class="text-white font-bold text-lg">5+ Years Mastery</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="about-content">
-        <span class="project-tag">About Me</span>
-        <h3>Strategic Engineering for Modern Businesses</h3>
-        <p>As the Co-Founder & CTO of DualSync Agency, I lead technical strategies and engineer enterprise-level backend
+      <div class="md:w-1/2">
+        <h2 class="text-4xl font-extrabold text-white mb-6 leading-tight">Strategic Engineering for <br> <span
+            class="text-primary-gradient">Modern Businesses.</span></h2>
+        <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+          As the Co-Founder & CTO of DualSync Agency, I lead technical strategies and engineer enterprise-level backend
           systems. My approach combines robust architecture with high-performance database management to deliver
-          scalable solutions.</p>
-
-        <div class="stats-grid">
-          <div class="stat-item">
-            <h4>20+</h4>
-            <p>Enterprise Applications Delivered</p>
+          scalable solutions.
+        </p>
+        <div class="grid grid-cols-2 gap-6 mb-10">
+          <div class="glass p-5 rounded-2xl">
+            <p class="text-3xl font-bold text-white mb-1">20+</p>
+            <p class="text-sm text-slate-400">Products Delivered</p>
           </div>
-          <div class="stat-item">
-            <h4>5+</h4>
-            <p>Years Backend Mastery</p>
+          <div class="glass p-5 rounded-2xl">
+            <p class="text-3xl font-bold text-white mb-1">15+</p>
+            <p class="text-sm text-slate-400">Happy Clients</p>
+          </div>
+        </div>
+        <a href="https://dualsyncagency.com" target="_blank"
+          class="px-8 py-4 bg-brand text-white font-bold rounded-xl hover:bg-brand/90 transition-all shadow-lg shadow-brand/20">
+          Work with DualSync
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Bento Grid -->
+  <section id="projects" class="py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <h2 class="text-3xl font-bold text-white mb-2">Engineering Portfolio</h2>
+          <p class="text-slate-400">High-performance solutions engineered with precision at DualSync.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <!-- Project 1: Duality Hotel (Hero) -->
+        <div class="md:col-span-8 md:row-span-2 glass glass-hover rounded-[2.5rem] overflow-hidden group">
+          <div class="relative aspect-[16/10] overflow-hidden bg-slate-900 border-b border-white/5">
+            <img src="{% static 'imgs/duality_hotel_pool.jpg' %}" alt="Duality Hotel"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60">
+            </div>
+            <div class="absolute top-6 left-6 flex gap-2">
+              <span
+                class="glass px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">Luxury
+                Booking</span>
+              <span
+                class="glass px-3 py-1 rounded-full text-[10px] font-bold text-brand uppercase tracking-widest">SaaS</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-3xl font-bold text-white mb-4">Duality Hotel</h3>
+            <p class="text-slate-400 mb-6 max-w-2xl leading-relaxed">
+              A premium luxury hotel management platform featuring advanced reservation systems, real-time availability
+              tracking, and a stunning night-mode aesthetic for high-end hospitality brands.
+            </p>
+            <div class="flex items-center gap-6">
+              <a href="https://dualityhotal.vercel.app/" target="_blank"
+                class="px-6 py-3 bg-brand text-white font-bold rounded-xl hover:bg-brand/90 transition-all flex items-center gap-2">
+                Live Demo <i class="fas fa-external-link-alt text-xs"></i>
+              </a>
+            </div>
           </div>
         </div>
 
-        <div style="margin-top: 2rem;">
-          <a href="#contact" class="btn btn-primary">Start collaboration</a>
+        <!-- Project 2: School ERP -->
+        <div class="md:col-span-4 glass glass-hover rounded-[2rem] overflow-hidden group">
+          <div class="relative aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
+            <img src="{% static 'imgs/school_erp_dashboard.png' %}" alt="School ERP"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-2">School ERP</h3>
+            <p class="text-slate-400 text-sm mb-4">Comprehensive management system with RBAC for principals and
+              students.</p>
+            <a href="https://siddique.pythonanywhere.com/" target="_blank"
+              class="text-brand text-sm font-bold hover:underline">View Dashboard →</a>
+          </div>
+        </div>
+
+        <!-- Project 3: CAD (Custom Apparel Design) -->
+        <div class="md:col-span-4 glass glass-hover rounded-[2rem] overflow-hidden group">
+          <div class="relative aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
+            <img src="{% static 'imgs/cad_dashboard_new.png' %}" alt="CAD"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-2">CAD - Custom Apparel</h3>
+            <p class="text-slate-400 text-sm mb-4">Automated design workflow and order management for apparel
+              manufacturers.</p>
+            <span class="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Enterprise Solution</span>
+          </div>
+        </div>
+
+        <!-- Project 4: BookAirFlight -->
+        <div class="md:col-span-6 glass glass-hover rounded-[2rem] overflow-hidden group">
+          <div class="relative aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
+            <img src="{% static 'imgs/bookair_flight_search.png' %}" alt="BookAirFlight"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-bold text-white mb-2">BookAirFlight</h3>
+            <p class="text-slate-400 text-sm mb-6">High-speed airline search engine with real-time pricing and smooth UX
+              patterns.</p>
+            <a href="https://bookairflight.netlify.app/" target="_blank"
+              class="text-slate-400 hover:text-white transition-colors"><i class="fas fa-external-link-alt"></i> visit
+              site</a>
+          </div>
+        </div>
+
+        <!-- Project 5: Filler - Provider Booking -->
+        <div class="md:col-span-6 glass glass-hover rounded-[2rem] overflow-hidden group">
+          <div class="relative aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
+            <img src="{% static 'imgs/filler_analytics.png' %}" alt="Filler - Provider Booking"
+              class="w-full h-full object-cover object-bottom transition-transform duration-700 group-hover:scale-110">
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-bold text-white mb-2 text-primary-gradient">Filler - Provider Booking</h3>
+            <p class="text-slate-400 text-sm mb-4">
+              A scalable SaaS platform connecting service providers with clients. Built with Django REST Framework, JWT
+              authentication, and AWS S3 integration.
+            </p>
+            <div class="flex gap-3">
+              <span class="text-[10px] font-bold text-brand/70 uppercase">DRF</span>
+              <span class="text-[10px] font-bold text-brand/70 uppercase">AWS</span>
+              <span class="text-[10px] font-bold text-brand/70 uppercase">SaaS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Projects Grid -->
+      {% if projects %}
+      <div class="mt-24">
+        <h3 class="text-xl font-bold text-white mb-8 opacity-50 uppercase tracking-widest text-center">More Engineering
+          Works</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {% for project in projects %}
+          <div class="glass glass-hover p-6 rounded-[2rem] group transition-all">
+            <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-white/5">
+              {% if project.image %}
+              <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+              {% else %}
+              <div class="w-full h-full flex items-center justify-center">
+                <i class="fas fa-code text-3xl text-slate-700"></i>
+              </div>
+              {% endif %}
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-brand transition-colors">{{ project.title }}
+            </h4>
+            <p class="text-slate-400 text-sm mb-6 line-clamp-2">{{ project.description }}</p>
+            <div class="flex items-center gap-4 border-t border-white/5 pt-6">
+              {% if project.github_link %}
+              <a href="{{ project.github_link }}" target="_blank"
+                class="text-slate-400 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+              {% endif %}
+              {% if project.live_link %}
+              <a href="{{ project.live_link }}" target="_blank"
+                class="text-slate-400 hover:text-white transition-colors"><i class="fas fa-external-link-alt"></i></a>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section id="experience" class="py-24 px-6 bg-white/[0.01]">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold text-white mb-12 text-center uppercase tracking-widest text-sm opacity-50">
+        Professional Journey</h2>
+
+      <div class="max-w-3xl mx-auto relative pl-8 border-l border-white/10">
+        <div class="mb-12 relative">
+          <div class="absolute -left-[41px] top-1 w-4 h-4 bg-brand rounded-full shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+          </div>
+          <span class="text-brand font-bold text-sm">2026 - Present</span>
+          <h3 class="text-xl font-bold text-white mt-1">Co-founder & CTO</h3>
+          <p class="text-slate-400 font-medium">DualSync Agency</p>
+          <p class="text-slate-500 text-sm mt-3">Leading technical strategy, architecting scalable backend systems for
+            international clients, and managing engineering teams.</p>
+        </div>
+
+        <div class="mb-12 relative opacity-70">
+          <div class="absolute -left-[41px] top-1 w-4 h-4 bg-slate-700 rounded-full"></div>
+          <span class="text-slate-400 font-bold text-sm">2024 - 2025</span>
+          <h3 class="text-xl font-bold text-white mt-1">Senior Full Stack Developer</h3>
+          <p class="text-slate-400 font-medium">Freelance & Contract Work</p>
+          <p class="text-slate-500 text-sm mt-3">Specialized in Python/Django development, creating automated workflows
+            and robust database architectures for diverse sectors.</p>
+        </div>
+
+        <div class="relative opacity-50">
+          <div class="absolute -left-[41px] top-1 w-4 h-4 bg-slate-800 rounded-full"></div>
+          <span class="text-slate-500 font-bold text-sm">2023 - 2024</span>
+          <h3 class="text-xl font-bold text-white mt-1">Backend Developer</h3>
+          <p class="text-slate-400 font-medium">Fabulous Technology Solution</p>
+          <p class="text-slate-500 text-sm mt-3">Started as an intern and progressed to intermediate Python/Django
+            developer. Focused on mastery of web technologies and engineering foundational systems.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Technical Expertise -->
-  <section class="section" id="expertise">
-    <div class="container">
-      <h2 class="section-title">Technical Expertise</h2>
-      <div class="expertise-grid">
-        <div class="expertise-card">
-          <i class="fab fa-python" style="color:#3776ab;"></i>
-          <h4>Python</h4>
+  <!-- Tech Stack -->
+  <section id="tech" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">Technical Arsenal</h2>
+      <p class="text-slate-400 mb-16">The technologies I use to build world-class products.</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fab fa-python text-4xl text-[#3776ab]"></i>
+          <span class="font-semibold text-sm">Python</span>
         </div>
-        <div class="expertise-card">
-          <i class="fas fa-server" style="color:#092e20;"></i>
-          <h4>Django</h4>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fas fa-server text-4xl text-[#092e20]"></i>
+          <span class="font-semibold text-sm">Django</span>
         </div>
-        <div class="expertise-card">
-          <i class="fab fa-react" style="color:#61dafb;"></i>
-          <h4>React</h4>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fab fa-react text-4xl text-[#61dafb]"></i>
+          <span class="font-semibold text-sm">React</span>
         </div>
-        <div class="expertise-card">
-          <i class="fab fa-js" style="color:#f7df1e;"></i>
-          <h4>JavaScript</h4>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fab fa-js text-4xl text-[#f7df1e]"></i>
+          <span class="font-semibold text-sm">JavaScript</span>
         </div>
-        <div class="expertise-card">
-          <i class="fab fa-docker" style="color:#2496ed;"></i>
-          <h4>Docker</h4>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fab fa-docker text-4xl text-[#2496ed]"></i>
+          <span class="font-semibold text-sm">Docker</span>
         </div>
-        <div class="expertise-card">
-          <i class="fas fa-infinity" style="color:#f7a50a;"></i>
-          <h4>DevOps</h4>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fab fa-github text-4xl text-white"></i>
+          <span class="font-semibold text-sm">GitHub</span>
         </div>
-        <!-- Add more as needed -->
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fas fa-database text-4xl text-[#336791]"></i>
+          <span class="font-semibold text-sm">PostgreSQL</span>
+        </div>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fas fa-bolt text-4xl text-[#05998b]"></i>
+          <span class="font-semibold text-sm">FastAPI</span>
+        </div>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fab fa-html5 text-4xl text-[#e34f26]"></i>
+          <span class="font-semibold text-sm">HTML5</span>
+        </div>
+        <div class="glass p-8 rounded-2xl flex flex-col items-center gap-4 transition-transform hover:scale-105">
+          <i class="fab fa-css3-alt text-4xl text-[#1572b6]"></i>
+          <span class="font-semibold text-sm">CSS3</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio Section -->
-  <section class="section" id="projects" style="background: #050a1b;">
-    <div class="container">
-      <h2 class="section-title">Core Portfolio</h2>
-
-      <div class="projects-grid">
-
-        <!-- Flagship 1: CAD -->
-        <div class="project-card featured">
-          <div class="project-img-container">
-            <div class="project-slider" data-delay="5000">
-              <img src="{% static 'imgs/cad_catalog.png' %}" alt="CAD Catalog" class="active">
-              <img src="{% static 'imgs/cad_dashboard.png' %}" alt="CAD Dashboard">
-            </div>
-          </div>
-          <div class="project-content">
-            <span class="project-tag">E-Commerce Architecture</span>
-            <h3>Custom Apparel Design (CAD)</h3>
-            <p>A full-lifecycle e-commerce solution featuring complex drag-and-drop design tools, automated fulfillment
-              workflows, and Stripe payment integration.</p>
-            <div class="project-links">
-              <a href="https://www.fiverr.com/users/msiddique007/portfolio/Njk5MzJmZDhiOGQ2YjAwMDAxMTFhZDY5"
-                target="_blank"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Flagship 2: ERP -->
-        <div class="project-card featured">
-          <div class="project-img-container">
-            <div class="project-slider" data-delay="5000">
-              <img src="{% static 'imgs/school_student.png' %}" alt="Student Portal" class="active">
-              <img src="{% static 'imgs/school_principal.png' %}" alt="Principal Dashboard">
-            </div>
-          </div>
-          <div class="project-content">
-            <span class="project-tag">Enterprise ERP</span>
-            <h3>School Management System</h3>
-            <p>A mission-critical ERP system for educational institutions with robust role-based access control, complex
-              scheduling, and financial modules.</p>
-            <div class="project-links">
-              <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Flagship 3: Filler -->
-        <div class="project-card featured">
-          <div class="project-img-container">
-            <img src="{% static 'imgs/booking_mockup.png' %}" alt="Booking Platform" class="active"
-              style="width:100%; height:100%; object-fit:cover;">
-          </div>
-          <div class="project-content">
-            <span class="project-tag">SaaS Infrastructure</span>
-            <h3>Filler - Provider Booking</h3>
-            <p>A scalable SaaS platform connecting service providers with clients. Built with Django REST Framework, JWT
-              authentication, and AWS S3 integration.</p>
-            <div class="project-links">
-              <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dynamic DB Projects -->
-        {% for project in projects %}
-        <div class="project-card">
-          <div class="project-img-container" style="aspect-ratio: 16/9;">
-            {% if project.image %}
-            <img src="{{ project.image.url }}" alt="{{ project.title }}"
-              style="width:100%; height:100%; object-fit:cover;">
-            {% else %}
-            <div
-              style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#0f172a;">
-              <i class="fas fa-code" style="font-size: 2rem; color: #334155;"></i>
-            </div>
-            {% endif %}
-          </div>
-          <div class="project-content">
-            <span class="project-tag">Web Development</span>
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description|truncatechars:100 }}</p>
-            <div class="project-links">
-              {% if project.github_link %}<a href="{{ project.github_link }}" target="_blank"><i
-                  class="fab fa-github"></i></a>{% endif %}
-              {% if project.live_link %}<a href="{{ project.live_link }}" target="_blank"><i
-                  class="fas fa-external-link-alt"></i></a>{% endif %}
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
-      <h3 style="text-align: center; margin-top: 5rem; color: var(--text-secondary); font-size: 1.25rem;">GitHub
-        Engineering Logs</h3>
-      <div id="github-grid" class="projects-grid" style="margin-top: 2rem;"></div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="section" id="contact">
-    <div class="container">
-      <h2 class="section-title">Work With Me</h2>
-      <div class="contact-container">
-        <form action="." method="POST">
-          {% csrf_token %}
-          <div class="form-group">
-            <label style="display:block; margin-bottom:0.5rem; font-size:0.875rem;">Full Name</label>
-            <input type="text" name="name" class="form-control" placeholder="John Doe" required>
-          </div>
-          <div class="form-group">
-            <label style="display:block; margin-bottom:0.5rem; font-size:0.875rem;">Email Address</label>
-            <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
-          </div>
-          <div class="form-group">
-            <label style="display:block; margin-bottom:0.5rem; font-size:0.875rem;">Your Message</label>
-            <textarea name="message" class="form-control" rows="5" placeholder="Tell me about your project..."
-              required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Project
-            Inquiry</button>
-        </form>
+  <!-- CTA Section -->
+  <section class="py-24 px-6">
+    <div class="max-w-5xl mx-auto glass rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-brand/10 blur-[100px] rounded-full"></div>
+      <div class="relative z-10">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Let's Build <br> <span
+            class="text-brand">Something Big.</span></h2>
+        <p class="text-lg text-slate-400 mb-12 max-w-xl mx-auto">
+          Searching for a technical partner or a scalable system? Let's discuss your next project.
+        </p>
+        <a href="https://www.linkedin.com/in/muhammad-siddique-88aa98284/" target="_blank"
+          class="inline-flex items-center gap-3 px-10 py-5 bg-brand text-white font-bold rounded-2xl hover:bg-brand/90 transition-all hover:scale-105 shadow-2xl shadow-brand/40">
+          Get in Touch <i class="fab fa-linkedin text-xl"></i>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-socials">
-        <a href="https://www.linkedin.com/in/muhammad-siddique-88aa98284/" target="_blank"><i
-            class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/m-siddique-786" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="mailto:contact@dualsyncagency.com"><i class="fas fa-envelope"></i></a>
-      </div>
-      <p style="color:var(--text-secondary);">Designed & Engineered by Muhammad Siddique. Co-founder @ DualSync Agency.
+  <footer class="py-12 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <a href="#home" class="logo-container">
+        <span class="logo-text">MS</span>
+        <span class="logo-dot">.</span>
+      </a>
+      <p class="text-slate-500 text-sm">
+        &copy; 2026 Muhammad Siddique. Designed with precision.
       </p>
+      <div class="flex gap-6 items-center">
+        <a href="https://github.com/m-siddique-786" target="_blank"
+          class="text-slate-400 hover:text-white transition-colors text-xl">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/muhammad-siddique-88aa98284/" target="_blank"
+          class="text-slate-400 hover:text-white transition-colors text-xl">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:contact@dualsyncagency.com" class="text-slate-400 hover:text-white transition-colors text-xl">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    // GitHub API
-    async function fetchGithub() {
-      const grid = document.getElementById('github-grid');
-      try {
-        const res = await fetch('https://api.github.com/users/m-siddique-786/repos?sort=created&per_page=6');
-        const repos = await res.json();
-        grid.innerHTML = repos.filter(r => !r.fork).map(repo => `
-                    <div class="project-card" style="padding:1.5rem;">
-                        <span class="project-tag">${repo.language || 'Code'}</span>
-                        <h3 style="font-size:1.1rem; margin-bottom:0.5rem;">${repo.name}</h3>
-                        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1rem;">${repo.description || 'View repository on GitHub.'}</p>
-                        <div class="project-links">
-                            <a href="${repo.html_url}" target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                `).join('');
-      } catch (e) { console.error(e); }
-    }
-
-    // Slider Logic
-    function initSliders() {
-      document.querySelectorAll('.project-slider').forEach(slider => {
-        const imgs = slider.querySelectorAll('img');
-        if (imgs.length <= 1) return;
-        let active = 0;
-        setInterval(() => {
-          imgs[active].classList.remove('active');
-          active = (active + 1) % imgs.length;
-          imgs[active].classList.add('active');
-        }, 5000);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      fetchGithub();
-      initSliders();
-    });
-  </script>
 </body>
 
 </html>
