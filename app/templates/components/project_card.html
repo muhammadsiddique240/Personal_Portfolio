@@ -1,0 +1,54 @@
+{% load static %}
+<article class="proj-card" role="article" aria-labelledby="proj-title-{{ project.slug }}" tabindex="0">
+  <div class="proj-card-cover" aria-hidden="true">
+    {% if project.image %}
+      <img src="{{ project.image.url }}" alt="{{ project.title }} screenshot" loading="lazy">
+    {% elif project.static_image %}
+      <img src="{% static 'imgs/' %}{{ project.static_image }}" alt="{{ project.title }} screenshot" loading="lazy">
+    {% else %}
+      <div class="proj-cover-placeholder" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
+    {% endif %}
+
+    {% if project.category %}
+      <span class="proj-category-badge">{{ project.category }}</span>
+    {% endif %}
+    <span class="proj-status-badge-top {{ project.status }}">{{ project.get_status_display }}</span>
+  </div>
+
+  <div class="proj-card-body">
+    <div class="proj-card-title">
+      <h3 id="proj-title-{{ project.slug }}">{{ project.title }}</h3>
+    </div>
+
+    <p class="proj-desc">{{ project.display_description|default:project.description|truncatechars:160 }}</p>
+
+    <div class="proj-tech-chips" aria-hidden="false">
+      {% with techs=project.tech_items %}
+        {% for tech in techs|slice:":5" %}
+          <span class="proj-chip">{{ tech }}</span>
+        {% endfor %}
+        {% if techs|length > 5 %}
+          <span class="proj-chip">+{{ techs|length|add:"-5" }}</span>
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="proj-card-footer">
+      <div class="proj-card-actions">
+        {% if project.github_link %}
+          <a class="proj-btn proj-btn-ghost" href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" aria-label="View source code for {{ project.title }}">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        {% endif %}
+        {% if project.live_link %}
+          <a class="proj-btn proj-btn-primary" href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer" aria-label="Open live demo for {{ project.title }}">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+          </a>
+        {% endif %}
+        <a class="proj-btn proj-btn-secondary" href="{% url 'project_detail' project.slug %}" aria-label="View detailed case study for {{ project.title }}">
+          View Project &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

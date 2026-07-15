@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section legal-content">
+  <div class="section-header">
+    <p class="eyebrow">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: {% now "F j, Y" %}</p>
+  </div>
+
+  <h2>1. Information Collection</h2>
+  <p>This website collects contact form submissions (name, email, message) exclusively to respond to inquiries.</p>
+  <p>I do not share, sell, or rent this information to any third parties.</p>
+
+  <h2>2. Analytics & Tracking</h2>
+  <p>Currently, this site uses minimal structural logging for security and operational purposes. If full analytics are
+    added, this policy will be updated with explicit notice.</p>
+
+  <h2>3. Data Retention & Removal</h2>
+  <p>Contact submissions are retained as necessary for professional correspondence. If you prefer your submitted
+    information to be removed from my records, please contact me directly.</p>
+
+  <h2>4. Security</h2>
+  <p>This site runs on secure infrastructure with standard protection mechanisms (HTTPS, CSRF tokens, strict referrers).
+    However, no internet transmission is 100% secure.</p>
+
+  <h2>5. Contact</h2>
+  <p>For questions regarding this policy, please reach out to <a
+      href="mailto:{{ site_settings.primary_email|default:'muhammedsiddique240@gmail.com' }}"
+      style="color:var(--accent-light);">{{ site_settings.primary_email|default:"muhammedsiddique240@gmail.com" }}</a>.
+  </p>
+</section>
+{% endblock %}

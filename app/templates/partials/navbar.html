@@ -1,0 +1,26 @@
+<header class="site-header" role="banner">
+  <div class="container nav-shell">
+    {% include "partials/brand.html" %}
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" title="Toggle theme">
+        <i class="fa-solid fa-sun theme-icon theme-icon-light" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon theme-icon theme-icon-dark" aria-hidden="true"></i>
+      </button>
+      <button class="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav"
+        aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        {% for key, label in nav_links %}
+        <a href="{% url key %}" class="nav-link {% if request.resolver_match.url_name == key %}is-active{% endif %}">{{ label }}</a>
+        {% endfor %}
+        {% if site_settings.resume_url %}
+        <a class="btn btn-primary btn-sm" href="{{ site_settings.resume_url }}" target="_blank"
+          rel="noopener noreferrer">
+          <i class="fa-solid fa-download"></i> Resume
+        </a>
+        {% endif %}
+      </nav>
+    </div>
+  </div>
+</header>

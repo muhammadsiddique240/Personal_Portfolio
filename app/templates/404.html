@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="error-page section">
+  <div class="error-code text-gradient">404</div>
+  <h1>Page Not Found</h1>
+  <p style="max-width:50ch;margin:0 auto 2rem;color:var(--text-secondary);">The page you are looking for doesn't exist,
+    has been moved, or is temporarily unavailable.</p>
+  <div style="display:flex;gap:0.75rem;justify-content:center;">
+    <a href="{% url 'home' %}" class="btn btn-primary"><i class="fa-solid fa-house"></i> Back to Home</a>
+    <a href="{% url 'contact' %}" class="btn btn-ghost"><i class="fa-solid fa-envelope"></i> Contact Support</a>
+  </div>
+</section>
+{% endblock %}

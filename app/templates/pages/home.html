@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="hero section hero-v2" aria-label="Introduction">
+  <div class="hero-main">
+    <div class="hero-content">
+      <p class="eyebrow hero-badge">• FULL STACK ENGINEER • AI DEVELOPER • TECHNICAL WRITER • SEO LEARNER</p>
+      <h1>Building modern software, <span class="text-accent">AI products</span>, and <span
+          class="text-accent">technical content</span> that earns trust.</h1>
+      <p class="hero-intro">I help startups architect scalable SaaS systems, integrate AI workflows, and publish
+        technical content that attracts the right audience.</p>
+      <div class="hero-stats-inline" aria-label="Hero statistics">
+        <div class="hsi-item">
+          <i class="fa-solid fa-book hsi-icon"></i>
+          <div class="hsi-body">
+            <span class="hsi-value">10+</span>
+            <span class="hsi-label">Articles Written</span>
+          </div>
+        </div>
+        <div class="hsi-item">
+          <i class="fa-solid fa-code hsi-icon"></i>
+          <div class="hsi-body">
+            <span class="hsi-value">25+</span>
+            <span class="hsi-label">Projects Built</span>
+          </div>
+        </div>
+        <div class="hsi-item">
+          <i class="fa-solid fa-graduation-cap hsi-icon"></i>
+          <div class="hsi-body">
+            <span class="hsi-value hsi-value-accent">3+</span>
+            <span class="hsi-label">Years of Learning</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="{% url 'projects' %}" class="btn btn-primary"><i class="fa-solid fa-folder"></i> View Projects</a>
+        <a href="{% url 'contact' %}" class="btn btn-ghost"><i class="fa-solid fa-user"></i> Hire Me</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card hero-authority">
+        <img src="{% static 'imgs/profile-main.jpeg' %}" alt="Muhammad Siddique"
+          class="profile-image profile-image-hero" loading="lazy">
+        <h3>Muhammad Siddique</h3>
+        <p class="hero-caption">Backend Engineer • Django Developer</p>
+        <p class="hero-caption">AI Engineer • Technical Writer</p>
+        <div class="hero-mini-badges">
+          <span>Python</span><span>Django</span><span>REST
+            APIs</span><span>Docker</span><span>PostgreSQL</span><span>OpenAI</span><span>SEO</span>
+        </div>
+        <div class="hero-socials">
+          <a href="{{ site_settings.github_url|default:'#' }}" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="{{ site_settings.linkedin_url|default:'#' }}" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="{{ site_settings.twitter_url|default:'https://x.com/sidd07mh' }}" target="_blank"
+            rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="mailto:{{ site_settings.primary_email|default:'muhammedsiddique240@gmail.com' }}"
+            aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="home-flow">
+  <section class="section editorial-feature reveal">
+    <div class="section-header">
+      <p class="eyebrow">Featured Article</p>
+      <h2>Latest long-form engineering note</h2>
+    </div>
+    {% with lead_post=latest_posts|first %}
+    {% if lead_post %}
+    <article class="feature-article feature-article-enhanced">
+      <div class="feature-article-body">
+        <div class="feature-article-meta">
+          <span class="feature-tag">{{ lead_post.category.name|default:"Engineering" }}</span>
+          <span class="feature-read-time"><i class="fa-regular fa-clock"></i> {{ lead_post.reading_time }} min read</span>
+        </div>
+        <h3><a href="{% url 'blog_detail' lead_post.slug %}">{{ lead_post.title }}</a></h3>
+        <p class="feature-excerpt">{{ lead_post.excerpt }}</p>
+        <div class="feature-article-footer">
+          <a href="{% url 'blog_detail' lead_post.slug %}" class="btn btn-primary btn-sm">Read full article <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="{% url 'blog' %}" class="btn btn-ghost btn-sm">All articles</a>
+        </div>
+      </div>
+<div class="feature-article-visual">
+        <img src="{% static 'imgs/python_info.png' %}" alt="Why Python — infographic" loading="lazy" class="feature-infographic">
+      </div>
+    </article>
+    {% endif %}
+    {% endwith %}
+  </section>
+
+  <section class="section reveal" aria-label="Featured projects">
+    <div class="section-header">
+      <p class="eyebrow">Featured Projects</p>
+      <h2>Built for production, not demos</h2>
+      <p class="section-subheading">Real systems solving real problems — each project shipped with a proper
+        architecture, clean API design, and production deployment.</p>
+    </div>
+    <div class="proj-grid">
+      {% for project in featured_projects %}
+        {% include "components/project_card.html" with project=project %}
+      {% endfor %}
+    </div>
+    <div class="section-cta-row">
+      <a href="{% url 'projects' %}" class="btn btn-ghost">View all projects <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <section class="section reveal split-panel">
+    <div>
+      <p class="eyebrow">About Me</p>
+      <h2>Engineering + writing + discoverability</h2>
+      <p>I am evolving from pure implementation into a hybrid role: building products, writing technical content, and
+        learning advanced SEO to help high-value engineering work reach the right readers.</p>
+    </div>
+    <div class="journey-panel">
+      <p class="eyebrow">Developer Journey</p>
+      <ul>
+        {% for step in journey_steps|slice:":8" %}
+        <li>{{ step }}</li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'experience' %}" class="btn btn-ghost btn-sm">Explore full journey</a>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-header">
+      <p class="eyebrow">Building with Artificial Intelligence</p>
+      <h2>Tools and learning tracks</h2>
+    </div>
+    <div class="tech-grid">{% for ai in ai_stack %}<span class="tech-badge">{{ ai }}</span>{% endfor %}</div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-header">
+      <p class="eyebrow">Latest Articles</p>
+      <h2>Technical writing and systems insights</h2>
+    </div>
+    <div class="grid-3">
+      {% for post in latest_posts %}
+      <article class="card blog-card">
+        <p class="eyebrow">{{ post.category.name|default:"Engineering" }}</p>
+        <h3><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h3>
+        <p class="card-excerpt">{{ post.excerpt|truncatechars:130 }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% if testimonials %}
+  <section class="section reveal">
+    <div class="section-header">
+      <p class="eyebrow">Testimonials</p>
+      <h2>What collaborators say</h2>
+    </div>
+    <div class="grid-3">
+      {% for testimonial in testimonials %}
+      <div class="testimonial-card testimonial-card-premium">
+        <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">{{ testimonial.name|make_list|first }}</div>
+          <div class="testimonial-info">
+            <div class="name">{{ testimonial.name }}</div>
+            <div class="role">{{ testimonial.role }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="section reveal" aria-label="Get in touch">
+    <div class="cta-section">
+      <h2>Helping startups build modern software</h2>
+      <p>Need a Full Stack Engineer and AI-focused product builder who also understands technical storytelling and
+        SEO-driven growth?</p>
+      <div class="cta-actions"><a href="{% url 'contact' %}" class="btn btn-primary">Start a conversation</a><a
+          href="{% url 'seo' %}" class="btn btn-ghost">Explore SEO journey</a></div>
+    </div>
+  </section>
+</div>
+{% endblock %}

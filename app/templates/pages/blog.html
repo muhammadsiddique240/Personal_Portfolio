@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section blog-index-shell">
+  <div class="section-header section-header-center blog-masthead">
+    <p class="eyebrow">Developer Publication</p>
+    <h1>Articles on full stack systems, AI development, and technical growth</h1>
+    <p>A publication-style reading experience inspired by modern engineering blogs.</p>
+  </div>
+
+  <form method="get" class="filter-bar" role="search" aria-label="Filter articles">
+    <input type="search" name="q" value="{{ search_query }}" placeholder="Search articles..."
+      aria-label="Search articles">
+    <select name="category" aria-label="Filter by category">
+      <option value="">All Categories</option>
+      {% for category in categories %}
+      <option value="{{ category.slug }}" {% if active_category == category.slug %}selected{% endif %}>{{ category.name }}
+      </option>
+      {% endfor %}
+    </select>
+    <select name="tag" aria-label="Filter by tag">
+      <option value="">All Tags</option>
+      {% for tag in tags %}
+      <option value="{{ tag.slug }}" {% if active_tag == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-primary btn-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Filter</button>
+  </form>
+
+  {% if featured_posts and not search_query and not active_category and not active_tag %}
+  {% with lead=featured_posts|first %}
+  {% if lead %}
+  <article class="blog-lead-card reveal">
+    <p class="eyebrow">Featured</p>
+    <h2><a href="{% url 'blog_detail' lead.slug %}">{{ lead.title }}</a></h2>
+    <p>{{ lead.excerpt }}</p>
+    <a href="{% url 'blog_detail' lead.slug %}" class="btn btn-primary btn-sm">Read featured article</a>
+  </article>
+  {% endif %}
+  {% endwith %}
+  {% endif %}
+
+  <div class="blog-layout">
+    <div class="grid-3">
+    {% for post in page_obj %}
+    <article class="card blog-card reveal">
+      <a href="{% url 'blog_detail' post.slug %}" class="blog-card-link">
+        {% if post.cover_image %}
+        <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="card-cover" loading="lazy">
+        {% endif %}
+        <div class="card-meta">
+          <span>{{ post.category.name|default:"Engineering" }}</span>
+          <span class="dot"></span>
+          <span>{{ post.reading_time }} min read</span>
+          {% if post.is_featured %}
+          <span class="dot"></span>
+          <span style="color:var(--accent-light);"><i class="fa-solid fa-star" style="font-size:0.55rem;"></i>
+            Featured</span>
+          {% endif %}
+        </div>
+        <h2 class="blog-card-title">{{ post.title }}</h2>
+        <p class="card-excerpt">{{ post.excerpt|truncatechars:160 }}</p>
+        <div class="blog-card-footer">
+          <div class="tags">
+            {% for tag in post.tags.all|slice:":3" %}<span class="tag">{{ tag.name }}</span>{% endfor %}
+          </div>
+          <span style="font-size:0.75rem;color:var(--text-tertiary);">{{ post.views }} views</span>
+        </div>
+      </a>
+      <div class="blog-card-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+    </article>
+    {% empty %}
+    <div style="grid-column:1/-1;text-align:center;padding:3rem 0;">
+      <i class="fa-solid fa-magnifying-glass" style="font-size:2rem;color:var(--text-tertiary);margin-bottom:1rem;"></i>
+      <p style="color:var(--text-secondary);">No articles found for this filter.</p>
+      <a href="{% url 'blog' %}" class="btn btn-ghost btn-sm" style="margin-top:1rem;">Clear Filters</a>
+    </div>
+    {% endfor %}
+    </div>
+    <aside class="blog-sidebar reveal">
+      <div class="sidebar-card">
+        <h3>Popular Posts</h3>
+        <ul>
+          {% for pop in popular_posts %}
+          <li><a href="{% url 'blog_detail' pop.slug %}">{{ pop.title|truncatechars:56 }}</a></li>
+          {% empty %}<li>No data yet.</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Newsletter</h3>
+        <p>Weekly notes on shipping software, writing better docs, and learning SEO.</p>
+        <a href="{% url 'contact' %}" class="btn btn-ghost btn-sm">Join update list</a>
+      </div>
+    </aside>
+  </div>
+
+  {% if page_obj.paginator.num_pages > 1 %}
+  <nav class="pagination" aria-label="Blog pagination">
+    {% if page_obj.has_previous %}
+    <a
+      href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}&category={{ active_category }}&tag={{ active_tag }}">
+      <i class="fa-solid fa-chevron-left"></i> Previous
+    </a>
+    {% endif %}
+    <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+    <a
+      href="?page={{ page_obj.next_page_number }}&q={{ search_query }}&category={{ active_category }}&tag={{ active_tag }}">
+      Next <i class="fa-solid fa-chevron-right"></i>
+    </a>
+    {% endif %}
+  </nav>
+  {% endif %}
+</section>
+{% endblock %}

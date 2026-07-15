@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section contact-shell">
+  <div class="section-header">
+    <p class="eyebrow">Work Together</p>
+    <h1>Tell me what you are building</h1>
+    <p>Share your product goals, architecture constraints, and delivery timeline. I reply with a structured plan, not a generic pitch.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-form-panel">
+      <form method="post" enctype="multipart/form-data" novalidate class="contact-form-premium" data-contact-form>
+        {% csrf_token %}
+        {{ contact_form.honeypot }}
+
+        <div class="form-group">
+          <label for="{{ contact_form.name.id_for_label }}">Full Name</label>
+          {{ contact_form.name }}
+          {% if contact_form.name.errors %}<p class="form-error">{{ contact_form.name.errors|striptags }}</p>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ contact_form.email.id_for_label }}">Email Address</label>
+          {{ contact_form.email }}
+          {% if contact_form.email.errors %}<p class="form-error">{{ contact_form.email.errors|striptags }}</p>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ contact_form.message.id_for_label }}">Message</label>
+          {{ contact_form.message }}
+          {% if contact_form.message.errors %}<p class="form-error">{{ contact_form.message.errors|striptags }}</p>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ contact_form.attachment.id_for_label }}">Attachment (image)</label>
+          {{ contact_form.attachment }}
+          {% if contact_form.attachment.errors %}<p class="form-error">{{ contact_form.attachment.errors|striptags }}</p>{% endif %}
+        </div>
+
+        <button class="btn btn-primary contact-submit" type="submit">
+          <i class="fa-solid fa-paper-plane"></i> <span>Send Message</span>
+        </button>
+        <div class="contact-form-status" data-contact-status aria-live="polite"></div>
+      </form>
+    </div>
+
+    <div class="contact-info contact-info-premium">
+      <div>
+        <h3>Direct channels</h3>
+        <p class="text-compact">Prefer async collaboration first? Use any of these channels.</p>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div>
+          <h4 class="contact-item-title">Email</h4>
+          <a href="mailto:{{ site_settings.primary_email|default:'muhammedsiddique240@gmail.com' }}"
+            class="contact-link">{{ site_settings.primary_email|default:"muhammedsiddique240@gmail.com" }}</a>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon"><i class="fa-brands fa-github"></i></div>
+        <div>
+          <h4 class="contact-item-title">GitHub</h4>
+          <a href="{{ site_settings.github_url|default:'#' }}" target="_blank" rel="noopener noreferrer"
+            class="contact-link">View Profile</a>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+        <div>
+          <h4 class="contact-item-title">LinkedIn</h4>
+          <a href="{{ site_settings.linkedin_url|default:'#' }}" target="_blank" rel="noopener noreferrer"
+            class="contact-link">Connect</a>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon"><i class="fa-brands fa-x-twitter"></i></div>
+        <div>
+          <h4 class="contact-item-title">X (Twitter)</h4>
+          <a href="{{ site_settings.twitter_url|default:'https://x.com/sidd07mh' }}" target="_blank" rel="noopener noreferrer"
+            class="contact-link">@sidd07mh</a>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div>
+          <h4 class="contact-item-title">Location</h4>
+          <p class="text-compact">{{ site_settings.location|default:"Remote" }} - Available worldwide</p>
+        </div>
+      </div>
+
+      <div class="contact-response-note">
+        <p><i class="fa-solid fa-clock"></i> Typical response time: <strong>within 24 hours</strong></p>
+      </div>
+
+      <div class="contact-response-note">
+        <p><i class="fa-solid fa-list-check"></i> Best results when message includes: product context, stack, timeline, and key blockers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

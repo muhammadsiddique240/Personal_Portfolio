@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="section">
+  <div class="about-grid">
+    <div class="about-sidebar">
+      <div class="hero-card" style="text-align:center;">
+        <img src="{% static 'imgs/profile-main.jpeg' %}" alt="Muhammad Siddique portrait"
+          class="profile-image profile-image-about" loading="lazy">
+        <h3 style="margin-top:0.5rem;">Muhammad Siddique</h3>
+        <p style="font-size:0.85rem;color:var(--text-secondary);">Full Stack Engineer • AI Developer • Technical Writer
+          • SEO Learner</p>
+        <div style="margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <div class="hero-meta-item" style="justify-content:center;"><i class="fa-solid fa-location-dot"></i> {{
+            site_settings.location|default:"Remote" }}</div>
+          <div class="hero-meta-item" style="justify-content:center;"><i class="fa-solid fa-circle status-dot"></i>
+            Available</div>
+        </div>
+        <div style="margin-top:1.25rem;display:flex;gap:0.5rem;justify-content:center;">
+          <a href="{{ site_settings.github_url|default:'#' }}" class="btn btn-ghost btn-sm btn-icon" target="_blank"
+            rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="{{ site_settings.linkedin_url|default:'#' }}" class="btn btn-ghost btn-sm btn-icon" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:{{ site_settings.primary_email|default:'muhammedsiddique240@gmail.com' }}"
+            class="btn btn-ghost btn-sm btn-icon" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-content about-editorial">
+      <p class="eyebrow">About</p>
+      <h1>Who I am and what I am building next</h1>
+      <p>I build software at the intersection of product engineering, artificial intelligence, and technical publishing.
+        Today my identity is broader than backend work: I design full stack systems, implement AI-powered workflows,
+        write technical content, and learn advanced SEO to improve discoverability.</p>
+      <p>My goal is simple: build products that work in production and write content that helps other engineers ship
+        better systems faster.</p>
+
+      <div class="about-story-grid">
+        <article class="about-story-card">
+          <h2>Mission</h2>
+          <p>Help startups build modern software with a reliable technical foundation, practical AI integration, and
+            clear engineering communication.</p>
+        </article>
+        <article class="about-story-card">
+          <h2>Vision</h2>
+          <p>Become a product-minded engineering creator whose systems, articles, and tools form a trusted resource hub
+            for founders and developers.</p>
+        </article>
+      </div>
+
+      <h2>Current focus</h2>
+      <ul class="about-focus-list">
+        <li>Building scalable SaaS products with Django-centric architecture.</li>
+        <li>Building AI-powered applications and automation layers.</li>
+        <li>Writing technical articles that are practical and implementation-ready.</li>
+        <li>Learning SEO deeply: metadata, schema, indexing, and content strategy.</li>
+      </ul>
+
+      <div class="about-emphasis">
+        <h2>Technical philosophy</h2>
+        <p>Architecture should reduce future complexity, not add more of it. I prioritize maintainability,
+          observability, and product velocity. I use stable foundations (Django, PostgreSQL, Redis, Celery) and layer
+          modern AI capabilities where they add measurable value.</p>
+      </div>
+
+      <div class="about-emphasis">
+        <h2>Future goals</h2>
+        <p>Build a recognizable technical brand around engineering depth, useful writing, and startup execution — then
+          use that platform to help teams launch and scale better products.</p>
+      </div>
+
+      <div style="margin-top:2.5rem;">
+        <a href="{% url 'contact' %}" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Let's Connect</a>
+        <a href="{% url 'experience' %}" class="btn btn-ghost" style="margin-left:0.5rem;"><i
+            class="fa-solid fa-timeline"></i> View Timeline</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

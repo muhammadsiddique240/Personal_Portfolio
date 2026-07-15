@@ -1,0 +1,51 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        {% include "partials/brand.html" %}
+        <p class="footer-tagline">{{ site_settings.site_tagline|default:"Full Stack Engineer · AI Developer · Technical Writer" }}</p>
+        <div class="footer-social" aria-label="Social links">
+          <a href="{{ site_settings.github_url|default:'#' }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="{{ site_settings.linkedin_url|default:'#' }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="{{ site_settings.twitter_url|default:'https://x.com/sidd07mh' }}" target="_blank" rel="noopener noreferrer" aria-label="X" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="mailto:{{ site_settings.primary_email|default:'muhammedsiddique240@gmail.com' }}" aria-label="Email" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="{% url 'rss_feed' %}" aria-label="RSS Feed" title="RSS"><i class="fa-solid fa-rss"></i></a>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-nav-group">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="{% url 'projects' %}">Projects</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'resources' %}">Resources</a></li>
+            <li><a href="{% url 'experience' %}">Experience</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-group">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="{{ site_settings.github_url|default:'#' }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="{{ site_settings.linkedin_url|default:'#' }}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="{{ site_settings.twitter_url|default:'https://x.com/sidd07mh' }}" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+            <li><a href="mailto:{{ site_settings.primary_email|default:'muhammedsiddique240@gmail.com' }}">Email</a></li>
+            {% if site_settings.resume_url %}<li><a href="{{ site_settings.resume_url }}" target="_blank" rel="noopener noreferrer">Resume</a></li>{% endif %}
+          </ul>
+        </div>
+        <div class="footer-nav-group">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+            <li><a href="{% url 'rss_feed' %}">RSS Feed</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">&copy; {% now "Y" %} {{ site_settings.site_name|default:"Muhammad Siddique" }}. Built with Django.</p>
+      <p class="footer-note">Deployed on Railway · Styled with Inter</p>
+    </div>
+  </div>
+</footer>

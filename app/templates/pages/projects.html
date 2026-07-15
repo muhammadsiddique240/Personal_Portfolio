@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="section projects-hero-section">
+  <div class="section-header">
+    <p class="eyebrow">Case Studies</p>
+    <h1>Projects with architecture, constraints, and outcomes</h1>
+    <p class="section-subheading">Each project is a real delivery story — problem, solution, implementation decisions,
+      and lessons learned from production.</p>
+  </div>
+
+  <div class="proj-grid">
+    {% for project in projects %}
+      {% include "components/project_card.html" with project=project %}
+    {% empty %}
+      <div class="proj-empty-state">
+        <i class="fa-solid fa-folder-open"></i>
+        <p>No projects yet. Add projects from the admin panel.</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

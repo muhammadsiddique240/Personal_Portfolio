@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section seo-hero">
+  <p class="eyebrow">SEO Learning Journey</p>
+  <h1>From Shipping Features to Building Discoverability</h1>
+  <p>I am actively learning technical SEO to make developer products and technical writing discoverable, readable, and useful for long-term growth.</p>
+</section>
+
+<section class="section seo-grid">
+  {% for topic in seo_topics %}
+    <article class="seo-card reveal">
+      <h3>{{ topic }}</h3>
+      <p>Practical notes, experiments, and implementation checklists focused on applying {{ topic|lower }} to real product and content workflows.</p>
+    </article>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section experience-page">
+  <div class="section-header section-header-center">
+    <p class="eyebrow">Career</p>
+    <h1>Experience Timeline</h1>
+    <p>Professional journey covering education, freelance work, technical leadership, and continuous learning.</p>
+  </div>
+
+  <div class="timeline timeline-centered">
+    {% for item in timeline %}
+    <article class="timeline-item reveal">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;flex-wrap:wrap;">
+        <div>
+          <span class="badge badge-featured" style="margin-bottom:0.5rem;">{{ item.get_item_type_display }}</span>
+          <h2 style="font-size:1.15rem;margin-top:0.4rem;">{{ item.title }}</h2>
+          <p style="font-size:0.9rem;color:var(--text-secondary);margin-top:0.15rem;">{{ item.organization }}</p>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <span style="font-size:0.8rem;color:var(--text-tertiary);">
+            {{ item.start_date|date:"M Y" }} — {% if item.is_current %}<span
+              style="color:var(--accent-light);">Present</span>{% elif item.end_date %}{{ item.end_date|date:"M Y" }}{% endif %}
+          </span>
+          {% if item.is_current %}
+          <div style="margin-top:0.25rem;">
+            <span class="badge badge-status" style="font-size:0.65rem;"><i class="fa-solid fa-circle"
+                style="font-size:0.35rem;"></i> Current</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <p style="font-size:0.875rem;margin-top:0.75rem;line-height:1.7;">{{ item.summary }}</p>
+      {% if item.item_type == "certification" %}
+      <div class="cert-grid">
+        <div class="cert-card">
+          <h4>Frontend Development</h4>
+          <p class="cert-duration">3 months</p>
+          <div class="cert-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>jQuery</span><span>React</span>
+          </div>
+        </div>
+        <div class="cert-card">
+          <h4>Backend Development</h4>
+          <p class="cert-duration">3 months</p>
+          <div class="cert-tags">
+            <span>Python</span><span>Django</span><span>DRF</span><span>Docker</span>
+          </div>
+        </div>
+      </div>
+      {% elif item.item_type == "employment" %}
+      <div class="cert-grid">
+        <div class="cert-card">
+          <h4>Internship</h4>
+          <p class="cert-duration">3 months</p>
+          <div class="cert-tags">
+            <span>Python</span><span>Django</span><span>REST APIs</span><span>Git</span><span>PostgreSQL</span>
+          </div>
+        </div>
+        <div class="cert-card">
+          <h4>Python Django Developer</h4>
+          <p class="cert-duration">1 year</p>
+          <div class="cert-tags">
+            <span>Python</span><span>Django</span><span>DRF</span><span>Docker</span><span>PostgreSQL</span><span>Redis</span><span>Celery</span><span>Linux</span><span>Nginx</span><span>Authentication</span><span>Payment APIs</span><span>Git</span>
+          </div>
+        </div>
+      </div>
+      {% elif item.details %}
+      <p style="font-size:0.85rem;margin-top:0.5rem;color:var(--text-tertiary);line-height:1.65;">{{ item.details }}</p>
+      {% endif %}
+    </article>
+    {% empty %}
+    <div style="text-align:center;padding:3rem 0;">
+      <i class="fa-solid fa-timeline" style="font-size:2rem;color:var(--text-tertiary);margin-bottom:1rem;"></i>
+      <p style="color:var(--text-secondary);">Add experience entries from the admin panel.</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section reveal experience-page">
+  <div class="section-header section-header-center">
+    <p class="eyebrow">Learning Path</p>
+    <h2>From curiosity to building modern software</h2>
+  </div>
+  <div class="journey-flow journey-flow-centered">
+    <span>Started learning programming</span>
+    <span>HTML CSS JavaScript</span>
+    <span>Python</span>
+    <span>Django</span>
+    <span>REST APIs</span>
+    <span>Docker</span>
+    <span>PostgreSQL</span>
+    <span>Authentication</span>
+    <span>Payment Integration</span>
+    <span>Celery</span>
+    <span>Redis</span>
+    <span>Full Stack Development</span>
+    <span>AI Development</span>
+    <span>Prompt Engineering</span>
+    <span>SEO</span>
+    <span>Technical Blogging</span>
+    <span>Building personal brand</span>
+    <span>Helping startups</span>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section reveal">
+  <div class="cta-section">
+    <h2>Interested in Working Together?</h2>
+    <p>I'm available for full stack product engineering, AI integration support, and technical content strategy.</p>
+    <div class="cta-actions">
+      <a href="{% url 'contact' %}" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
+      <a href="{{ site_settings.resume_url|default:'#' }}" class="btn btn-ghost" target="_blank"
+        rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download Resume</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

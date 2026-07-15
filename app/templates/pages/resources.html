@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section resources-shell">
+  <div class="section-header">
+    <p class="eyebrow">Resource Library</p>
+    <h1>Learning assets for engineers shipping real products</h1>
+    <p>Roadmaps, interview notes, cheat sheets, and practical playbooks across full stack engineering, AI systems, and technical SEO.</p>
+  </div>
+
+  <div class="resource-masthead reveal">
+    <div>
+      <h3>Built for implementation, not theory</h3>
+      <p>Every resource is structured to be useful during execution: architecture decisions, deployment notes, and operational shortcuts you can apply immediately.</p>
+    </div>
+    <div class="resource-keywords">
+      <span>Django Roadmap</span><span>AI Prompt Library</span><span>Linux Commands</span><span>Git Playbook</span>
+      <span>Docker Cheatsheet</span><span>SEO Notes</span>
+    </div>
+  </div>
+
+  <div class="resource-grid-alt">
+    {% for resource in resources %}
+    <article class="card resource-card resource-card-premium reveal">
+      <div class="resource-card-top">
+        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+        {% if resource.is_featured %}
+        <span class="badge badge-featured"><i class="fa-solid fa-star" style="font-size:0.55rem;"></i> Featured</span>
+        {% endif %}
+      </div>
+      <h2 class="resource-title">{{ resource.title }}</h2>
+      <p class="resource-description">{{ resource.description }}</p>
+      {% if resource.is_featured %}
+      <p class="resource-note">Frequently used by developers for interview prep and implementation checklists.</p>
+      {% endif %}
+      <div class="resource-actions">
+        <a href="{{ resource.file_url }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><i
+            class="fa-solid fa-eye"></i> View</a>
+      </div>
+    </article>
+    {% empty %}
+    <div style="grid-column:1/-1;text-align:center;padding:3rem 0;" class="card">
+      <i class="fa-solid fa-folder-open" style="font-size:2rem;color:var(--text-tertiary);margin-bottom:1rem;"></i>
+      <p style="color:var(--text-secondary);">Resources are being curated. Check back soon for downloadable guides.</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

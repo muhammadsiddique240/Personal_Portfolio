@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var theme = localStorage.getItem("portfolio-theme") || "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", theme === "light" ? "#ffffff" : "#050505");
+    })();
+  </script>
+  <title>{% if page_title %}{{ page_title }} | {% endif %}{{ site_settings.site_name|default:"Muhammad Siddique" }}
+  </title>
+  <meta name="description"
+    content="{{ meta_description|default:site_settings.seo_description|default:'Full Stack Engineer and AI Developer building scalable SaaS products and technical content.' }}">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="{{ site_settings.site_name|default:'Muhammad Siddique' }}">
+  <meta name="theme-color" content="#050505">
+
+  {% if canonical_url %}
+  <link rel="canonical" href="{{ canonical_url }}">{% endif %}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:title"
+    content="{% if page_title %}{{ page_title }}{% else %}{{ site_settings.site_name|default:'Muhammad Siddique' }}{% endif %}">
+  <meta property="og:description"
+    content="{{ meta_description|default:site_settings.seo_description|default:'Full stack engineering and AI product portfolio.' }}">
+  <meta property="og:url" content="{{ canonical_url|default:'' }}">
+  <meta property="og:site_name" content="{{ site_settings.site_name|default:'Muhammad Siddique' }}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+    content="{% if page_title %}{{ page_title }}{% else %}{{ site_settings.site_name|default:'Muhammad Siddique' }}{% endif %}">
+  <meta name="twitter:description"
+    content="{{ meta_description|default:site_settings.seo_description|default:'Full stack engineering and AI product portfolio.' }}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Blog Feed" href="{% url 'rss_feed' %}">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site_settings.site_name|default:'Muhammad Siddique' }}",
+    "jobTitle": "Full Stack Engineer",
+    "description": "{{ site_settings.site_tagline|default:'Full Stack Engineer | AI Developer | Technical Writer | SEO Learner' }}",
+    "url": "{{ canonical_url|default:'' }}",
+    "email": "{{ site_settings.primary_email|default:'' }}",
+    "sameAs": [
+      "{{ site_settings.github_url|default:'' }}",
+      "{{ site_settings.linkedin_url|default:'' }}",
+      "{{ site_settings.twitter_url|default:'' }}"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{ site_settings.site_name|default:'Muhammad Siddique' }}",
+    "url": "{{ canonical_url|default:'' }}",
+    "sameAs": [
+      "{{ site_settings.github_url|default:'' }}",
+      "{{ site_settings.linkedin_url|default:'' }}",
+      "{{ site_settings.twitter_url|default:'' }}"
+    ]
+  }
+  </script>
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  {% include "partials/navbar.html" %}
+
+  <main id="main-content" class="page-main">
+    <div class="container">
+      {% if messages %}
+      <section class="alert-stack" aria-live="polite">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+          <i
+            class="fa-solid {% if message.tags == 'success' %}fa-circle-check{% else %}fa-circle-exclamation{% endif %}"></i>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  {% include "partials/footer.html" %}
+
+  <script src="{% static 'js/script.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>
